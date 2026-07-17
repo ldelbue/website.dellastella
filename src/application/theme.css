@@ -1,0 +1,38 @@
+/*
+ * Design tokens del sito Della Stella — palette "Acqua".
+ * Modifica qui colori / font per aggiornare tutto il sito.
+ * Tailwind v4 genera automaticamente le utility (bg-brand, text-accent, font-heading, ...).
+ */
+@theme {
+  /* Superfici (sfondi chiari) */
+  --color-brand: #EEF2F2;         /* sfondo primario */
+  --color-brand-muted: #E3EAEA;   /* sfondo secondario */
+
+  /* Testo */
+  --color-ink: #16242A;           /* testo primario */
+  --color-ink-soft: #5C6F74;      /* testo muted */
+
+  /* Accenti */
+  --color-accent: #1F7A82;        /* accento principale */
+  --color-accent-soft: #3A9AA0;   /* accento secondario */
+
+  /* Alias legacy per compatibilità con componenti esistenti */
+  --color-forest: #1F7A82;
+  --color-forest-soft: #3A9AA0;
+
+  /* Superfici scure / hairline */
+  --color-surface: #EEF2F2;
+  --color-surface-elevated: #FFFFFF;
+  --color-hairline: rgba(22, 36, 42, 0.10);
+
+  /* Tipografia */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+
+  /* Raggi */
+  --radius-pill: 9999px;
+  --radius-card: 20px;
+
+  /* Ombre */
+  --shadow-nav: 0 10px 30px rgba(22, 36, 42, 0.08);
+}
