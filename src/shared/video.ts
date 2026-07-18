@@ -1,9 +1,9 @@
 export type VideoQuality = 'high' | 'medium' | 'low'
 
 export const BATTAGLIA_VIDEO_URLS: Record<VideoQuality, string> = {
-  high: 'https://www.dellastella.it/assets/battaglia-animeted-high.mp4',
-  medium: 'https://www.dellastella.it/assets/battaglia-animeted-medium.mp4',
-  low: 'https://www.dellastella.it/assets/battaglia-animeted-low.mp4',
+  high: 'https://cdn.dellastella.it/assets/battaglia-animeted-high.mp4',
+  medium: 'https://cdn.dellastella.it/assets/battaglia-animeted-medium.mp4',
+  low: 'https://cdn.dellastella.it/assets/battaglia-animeted-low.mp4',
 }
 
 type NetworkInfo = {

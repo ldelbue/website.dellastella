@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <Home />
+      <Home introDone={introDone} />
       {!introDone && <IntroSplash onFinish={() => setIntroDone(true)} />}
     </>
   )

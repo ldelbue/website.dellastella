@@ -55,7 +55,7 @@ export default function ImageSlider({
   return (
     <div className={`relative ${className}`}>
       <div
-        className="relative overflow-hidden rounded-card bg-brand-muted shadow-[0_20px_60px_rgba(22,36,42,0.10)]"
+        className="group relative overflow-hidden rounded-card bg-brand-muted shadow-[0_20px_60px_rgba(22,36,42,0.10)] transition-shadow duration-700 hover:shadow-[0_30px_80px_rgba(22,36,42,0.18)]"
         style={{ aspectRatio }}
       >
         <motion.div
@@ -80,7 +80,7 @@ export default function ImageSlider({
                 alt={altText(i)}
                 draggable={false}
                 loading={i === 0 ? 'eager' : 'lazy'}
-                className="w-full h-full object-cover pointer-events-none"
+                className="w-full h-full object-cover pointer-events-none transition-transform duration-[1400ms] ease-out group-hover:scale-[1.025]"
               />
             </div>
           ))}

@@ -11,15 +11,19 @@ import Contatti from '../components/Contatti'
 import Footer from '../shared/components/Footer'
 import { LangProvider, LANGS, useLang, useT } from '../shared/i18n'
 
-export default function Home() {
+type HomeProps = {
+  introDone: boolean
+}
+
+export default function Home({ introDone }: HomeProps) {
   return (
     <LangProvider>
-      <HomeInner />
+      <HomeInner introDone={introDone} />
     </LangProvider>
   )
 }
 
-function HomeInner() {
+function HomeInner({ introDone }: HomeProps) {
   const { lang, setLang } = useLang()
   const t = useT()
 
@@ -115,7 +119,7 @@ function HomeInner() {
         openMenuLabel={t.nav.openMenu}
         closeMenuLabel={t.nav.closeMenu}
       />
-      <HomeHero />
+      <HomeHero animateIn={introDone} />
       <Battaglia />
       <Casa />
       <Territorio />

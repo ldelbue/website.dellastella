@@ -49,12 +49,14 @@ export default function Esperienze() {
                 ease: [0.22, 1, 0.36, 1],
                 delay: (i % 3) * 0.08,
               }}
-              className="group  flex items-center gap-5 md:gap-6 bg-brand-muted p-6 md:p-8 min-h-35 transition-colors duration-500 ease-out hover:bg-brand"
+              whileHover={{ y: -4 }}
+              className="group relative overflow-hidden flex items-center gap-5 md:gap-6 bg-brand-muted p-6 md:p-8 min-h-35 transition-colors duration-500 ease-out hover:bg-white"
             >
-              <span className="font-mono tabular-nums text-accent text-4xl md:text-5xl leading-none">
+              <span aria-hidden="true" className="absolute inset-y-0 left-0 w-1 bg-accent scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-bottom" />
+              <span className="font-mono tabular-nums text-accent text-4xl md:text-5xl leading-none transition-transform duration-500 group-hover:translate-x-2">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h3 className="font-heading text-xl md:text-2xl text-ink leading-tight tracking-tight">
+              <h3 className="font-heading text-xl md:text-2xl text-ink leading-tight tracking-tight transition-transform duration-500 group-hover:translate-x-2">
                 {label}
               </h3>
             </motion.div>
