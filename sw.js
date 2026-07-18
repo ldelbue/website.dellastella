@@ -1,7 +1,11 @@
-const CACHE_NAME = 'della-stella-assets-v1'
+const CACHE_NAME = 'della-stella-assets-v2'
 
+// Video files are intentionally excluded: iOS Safari requires proper 206
+// Partial Content responses on Range requests, which we cannot fabricate
+// from an opaque no-cors response. Let the browser talk to the CDN
+// directly for videos.
 const ASSET_EXTENSIONS =
-  /\.(mp4|webm|mov|m4v|ogg|jpg|jpeg|png|webp|avif|gif|svg|ico|woff2?|ttf|otf)(\?.*)?$/i
+  /\.(jpg|jpeg|png|webp|avif|gif|svg|ico|woff2?|ttf|otf)(\?.*)?$/i
 
 self.addEventListener('install', (event) => {
   event.waitUntil(self.skipWaiting())
