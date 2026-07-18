@@ -9,13 +9,13 @@ const VIDEO_URL = battagliaVideoUrl()
  * Video sizing knobs.
  * - Above VIDEO_MAX_WIDTH_PX viewport: video capped at MAX (extra space on the
  *   left stays bg-white, animation anchored bottom-right).
- * - Between MIN and MAX: video width follows the viewport 1:1.
+ * - Between MIN and MAX: the real video size is driven by both viewport width
+ *   and height, so resizing either axis produces a visible proportional scale.
  * - Below VIDEO_MIN_WIDTH_PX viewport: video stops shrinking; the overflow on
- *   the left is clipped by the section's overflow-hidden, so the animation on
- *   the bottom-right stays visible.
+ *   the left is clipped, keeping the important bottom-right area visible.
  */
 const VIDEO_MAX_WIDTH_PX = 1800
-const VIDEO_MIN_WIDTH_PX = 225
+const VIDEO_MIN_WIDTH_PX = 720
 
 const range = (p: number, from: number, to: number) => {
   if (p <= from) return 0
@@ -106,16 +106,15 @@ export default function Battaglia() {
               playsInline
               preload="auto"
               aria-hidden="true"
-              className="absolute right-0 bottom-0 object-cover"
+              className="absolute bottom-0 right-0 max-w-none object-cover min-h-full"
               style={{
-                width: `clamp(${VIDEO_MIN_WIDTH_PX}px, 100vw, ${VIDEO_MAX_WIDTH_PX}px)`,
-                height: 'calc(100% + 2px)',
-                right: '-1px',
-                bottom: '-1px',
-                objectFit: 'cover',
-                objectPosition: 'right bottom',
+                width: `clamp(${VIDEO_MIN_WIDTH_PX}px, calc(90vw + 50vh), ${VIDEO_MAX_WIDTH_PX}px)`,
+                height: 'auto',
                 backgroundColor: 'transparent',
-                transform: 'translateZ(0)',
+                // L'overscan e l'ancoraggio rimangono identici
+                transform: 'translateZ(0) scale(1.045) translateY(2px)',
+                transformOrigin: 'right bottom',
+                willChange: 'width, transform',
               }}
           />
         </div>
@@ -125,7 +124,7 @@ export default function Battaglia() {
           className="md:hidden absolute inset-0 bg-white/55 backdrop-blur-[2px] z-1 pointer-events-none"
         />
 
-        <div className="relative z-10 h-full w-full mx-auto max-w-350 flex items-center">
+        <div className="relative z-10 h-full w-full mx-auto max-w-350 flex items-center md:items-start sm:items-start sm:pt-30 md:pt-30 lg:items-center">
           <div className="w-full max-w-xl px-6 md:pl-12 lg:pl-20">
             <span
               style={reveal(progress, 0.0, 0.08)}
