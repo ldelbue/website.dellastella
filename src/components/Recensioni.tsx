@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { useT } from '../shared/i18n'
 
 type Review = {
   stars: number
@@ -25,10 +26,12 @@ const REVIEWS: Review[] = [
 ]
 
 export default function Recensioni() {
+  const t = useT()
+
   return (
     <section
       id="recensioni"
-      aria-label="Recensioni degli ospiti"
+      aria-label={t.recensioni.aria}
       className="relative bg-brand py-20 md:py-28 min-h-svh flex flex-col justify-center"
     >
       <div className="mx-auto max-w-350 px-6 md:px-10">
@@ -42,11 +45,11 @@ export default function Recensioni() {
           >
             <span className="inline-flex items-center gap-2 rounded-pill bg-white/70 backdrop-blur px-3.5 py-1.5 text-[12.5px] font-medium tracking-wide text-ink-soft border border-hairline mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              Recensioni
+              {t.recensioni.badge}
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl leading-[1.08] tracking-tight text-ink">
-              Le parole{' '}
-              <span className="text-accent">degli ospiti</span>.
+              {t.recensioni.headingLead}{' '}
+              <span className="text-accent">{t.recensioni.headingAccent}</span>.
             </h2>
           </motion.div>
 
@@ -61,7 +64,7 @@ export default function Recensioni() {
             className="inline-flex items-center gap-2.5 self-start md:self-auto rounded-pill bg-white px-4 py-2 text-[13px] font-medium text-ink border border-hairline shadow-[0_6px_20px_rgba(22,36,42,0.06)] hover:shadow-[0_10px_28px_rgba(22,36,42,0.10)] transition-shadow"
           >
             <GoogleGIcon />
-            <span>Recensioni verificate su Google</span>
+            <span>{t.recensioni.verifiedGoogle}</span>
           </motion.a>
         </div>
 
@@ -78,6 +81,7 @@ export default function Recensioni() {
 type ReviewCardProps = { review: Review; index: number }
 
 function ReviewCard({ review, index }: ReviewCardProps) {
+  const t = useT()
   return (
     <motion.article
       initial={{ opacity: 0, y: 28 }}
@@ -93,7 +97,7 @@ function ReviewCard({ review, index }: ReviewCardProps) {
     >
       <div
         className="flex items-center gap-0.5 mb-5"
-        aria-label={`${review.stars} stelle su 5`}
+        aria-label={t.recensioni.starsAria(review.stars)}
       >
         {Array.from({ length: 5 }).map((_, i) => (
           <svg

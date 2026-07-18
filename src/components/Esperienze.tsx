@@ -1,19 +1,13 @@
 import { motion } from 'motion/react'
-
-const ESPERIENZE: string[] = [
-  'Trekking alle cascate',
-  'River trekking nel Bussento',
-  'Borghi e mestieri antichi',
-  'Cucina cilentana',
-  'Mare e calette nascoste',
-  'Cielo stellato e silenzio',
-]
+import { useT } from '../shared/i18n'
 
 export default function Esperienze() {
+  const t = useT()
+
   return (
     <section
       id="esperienze"
-      aria-label="Esperienze"
+      aria-label={t.esperienze.aria}
       className="relative bg-brand-muted py-24 md:py-32 overflow-hidden min-h-svh flex flex-col justify-center"
     >
       <div
@@ -35,16 +29,16 @@ export default function Esperienze() {
         >
           <span className="inline-flex items-center gap-2 rounded-pill bg-white/70 backdrop-blur px-3.5 py-1.5 text-[12.5px] font-medium tracking-wide text-ink-soft border border-hairline mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            Esperienze
+            {t.esperienze.badge}
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl leading-[1.08] tracking-tight text-ink">
-            Cosa fare{' '}
-            <span className="text-accent">intorno a Della Stella</span>.
+            {t.esperienze.headingLead}{' '}
+            <span className="text-accent">{t.esperienze.headingAccent}</span>.
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-hairline">
-          {ESPERIENZE.map((label, i) => (
+          {t.esperienze.items.map((label, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 24 }}

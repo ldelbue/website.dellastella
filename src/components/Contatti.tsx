@@ -1,18 +1,16 @@
 import { motion } from 'motion/react'
+import { useT } from '../shared/i18n'
 
-const CTA_BG_IMAGE = 'https://picsum.photos/seed/capelli-di-venere/1800/1000'
+const CTA_BG_IMAGE = 'https://cdn.dellastella.it/assets/cascate.webp'
 
 const WHATSAPP_URL = 'https://wa.me/393715982508'
 const EMAIL = 'info@dellastella.it'
 
-type Distance = { name: string; time: string }
-
-const DISTANCES: Distance[] = [
-  { name: 'Cascate Capelli di Venere', time: '5 min' },
-  { name: 'Sentieri & natura', time: '1 min' },
-  { name: 'Mare (Sapri)', time: '25 min' },
-  { name: 'Aeroporto di Napoli', time: '2 h' },
-]
+/**
+ * Tempi in ordine allineato a `t.contatti.distances`. Le unità (min/h) sono
+ * uguali in tutte le lingue supportate.
+ */
+const DISTANCE_TIMES: string[] = ['5 min', '1 min', '25 min', '2 h']
 
 const MAP_EMBED_URL =
   'https://maps.google.com/maps?q=Della+Stella+Casa+Vacanza,+Casaletto+Spartano&hl=it&z=14&output=embed'
@@ -21,10 +19,12 @@ const MAP_LINK_URL =
   'https://www.google.com/maps/place/Della+Stella+Casa+Vacanza/@40.1478485,15.6232064,15z'
 
 export default function Contatti() {
+  const t = useT()
+
   return (
     <section
       id="contatti"
-      aria-label="Contatti e come arrivare"
+      aria-label={t.contatti.aria}
       className="relative bg-white py-20 md:py-28 min-h-svh flex flex-col justify-center"
     >
       <div className="mx-auto w-full max-w-350 px-6 md:px-10 flex flex-col gap-16 md:gap-24">
@@ -55,11 +55,10 @@ export default function Contatti() {
               Della Stella
             </span>
             <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight text-white max-w-2xl">
-              Pronti a partire?
+              {t.contatti.ctaHeading}
             </h2>
             <p className="text-white/85 text-base md:text-lg leading-relaxed max-w-md mb-4">
-              Scrivici per disponibilità, tariffe e per costruire insieme il
-              tuo soggiorno.
+              {t.contatti.ctaDescription}
             </p>
 
             <div className="flex flex-wrap justify-center gap-3">
@@ -70,14 +69,14 @@ export default function Contatti() {
                 className="inline-flex items-center gap-2.5 px-6 py-3 rounded-pill bg-[#25d366] text-white font-semibold text-[15px] shadow-[0_10px_28px_rgba(37,211,102,0.35)] hover:brightness-95 hover:-translate-y-0.5 transition"
               >
                 <WhatsAppIcon />
-                Scrivici su WhatsApp
+                {t.contatti.whatsappCta}
               </a>
               <a
                 href={`mailto:${EMAIL}`}
                 className="inline-flex items-center gap-2.5 px-6 py-3 rounded-pill border border-white/50 text-white font-semibold text-[15px] backdrop-blur-sm hover:bg-white/10 hover:-translate-y-0.5 transition"
               >
                 <EmailIcon />
-                Invia una email
+                {t.contatti.emailCta}
               </a>
             </div>
           </div>
@@ -92,17 +91,17 @@ export default function Contatti() {
           >
             <span className="inline-flex items-center gap-2 rounded-pill bg-white/70 backdrop-blur px-3.5 py-1.5 text-[12.5px] font-medium tracking-wide text-ink-soft border border-hairline mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              Come arrivare
+              {t.contatti.howToBadge}
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.1] tracking-tight text-ink mb-8">
-              Battaglia di{' '}
-              <span className="text-accent">Casaletto Spartano</span>.
+              {t.contatti.howToLead}{' '}
+              <span className="text-accent">{t.contatti.howToAccent}</span>.
             </h2>
 
             <ul className="flex flex-col border-t border-hairline">
-              {DISTANCES.map((d, i) => (
+              {t.contatti.distances.map((name, i) => (
                 <motion.li
-                  key={d.name}
+                  key={i}
                   initial={{ opacity: 0, x: -16 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -116,11 +115,11 @@ export default function Contatti() {
                   <span className="flex items-center gap-3 text-ink">
                     <PinIcon />
                     <span className="text-[15px] md:text-[15.5px]">
-                      {d.name}
+                      {name}
                     </span>
                   </span>
                   <span className="text-[13px] md:text-[13.5px] font-semibold tabular-nums text-ink-soft">
-                    {d.time}
+                    {DISTANCE_TIMES[i]}
                   </span>
                 </motion.li>
               ))}
@@ -131,7 +130,7 @@ export default function Contatti() {
             href={MAP_LINK_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Apri Della Stella su Google Maps"
+            aria-label={t.contatti.ariaOpenMaps}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -142,7 +141,7 @@ export default function Contatti() {
               src={MAP_EMBED_URL}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Mappa Della Stella"
+              title={t.contatti.mapTitle}
               className="w-full h-full border-0"
             />
             <div
@@ -150,7 +149,7 @@ export default function Contatti() {
               className="absolute inset-0 bg-transparent group-hover:bg-ink/10 transition-colors duration-300 pointer-events-none"
             />
             <div className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-pill bg-white/95 backdrop-blur px-3 py-1.5 text-[12px] font-semibold text-ink border border-hairline shadow-nav pointer-events-none">
-              Apri su Google Maps
+              {t.contatti.openInMaps}
               <svg
                 width="12"
                 height="12"

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Navbar from '../shared/components/Navbar'
 import type { NavItem } from '../shared/components/Navbar'
 import HomeHero from '../components/HomeHero'
@@ -10,14 +9,19 @@ import Galleria from '../components/Galleria'
 import Recensioni from '../components/Recensioni'
 import Contatti from '../components/Contatti'
 import Footer from '../shared/components/Footer'
-
-type Lang = 'IT' | 'EN' | 'DE'
-const LANGS: Lang[] = ['IT', 'EN', 'DE']
-
-
+import { LangProvider, LANGS, useLang, useT } from '../shared/i18n'
 
 export default function Home() {
-  const [lang, setLang] = useState<Lang>('IT')
+  return (
+    <LangProvider>
+      <HomeInner />
+    </LangProvider>
+  )
+}
+
+function HomeInner() {
+  const { lang, setLang } = useLang()
+  const t = useT()
 
   const brand = (
     <a
@@ -39,18 +43,18 @@ export default function Home() {
   )
 
   const items: NavItem[] = [
-    { id: 'casa',       label: 'La Casa',       href: '#casa',       position: 'center' },
-    { id: 'territorio', label: 'Il Territorio', href: '#territorio', position: 'center' },
-    { id: 'esperienze', label: 'Esperienze',    href: '#esperienze', position: 'center' },
-    { id: 'galleria',   label: 'Galleria',      href: '#galleria',   position: 'center' },
-    { id: 'contatti',   label: 'Contatti',      href: '#contatti',   position: 'center' },
+    { id: 'casa',       label: t.nav.casa,       href: '#casa',       position: 'center' },
+    { id: 'territorio', label: t.nav.territorio, href: '#territorio', position: 'center' },
+    { id: 'esperienze', label: t.nav.esperienze, href: '#esperienze', position: 'center' },
+    { id: 'galleria',   label: t.nav.galleria,   href: '#galleria',   position: 'center' },
+    { id: 'contatti',   label: t.nav.contatti,   href: '#contatti',   position: 'center' },
     {
       id: 'lang',
       position: 'right',
       render: ({ inMobileMenu }) => (
         <div
           role="group"
-          aria-label="Lingua"
+          aria-label={t.nav.lingua}
           className={`${
             inMobileMenu
               ? 'flex w-full justify-center'
@@ -85,7 +89,7 @@ export default function Home() {
               href="#disponibilita"
               className="block w-full text-center text-[15px] font-semibold px-4 py-2.5 rounded-full bg-accent text-white hover:bg-accent-soft transition-colors"
             >
-              Disponibilità
+              {t.nav.disponibilita}
             </a>
           )
         }
@@ -94,7 +98,7 @@ export default function Home() {
             href="#disponibilita"
             className="hidden min-[360px]:inline-flex text-[13px] md:text-sm font-semibold px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-accent text-white hover:bg-accent-soft transition-colors whitespace-nowrap"
           >
-            Disponibilità
+            {t.nav.disponibilita}
           </a>
         )
       },
@@ -108,6 +112,8 @@ export default function Home() {
         brand={brand}
         hideOnScrollDown
         alwaysVisibleAtTop
+        openMenuLabel={t.nav.openMenu}
+        closeMenuLabel={t.nav.closeMenu}
       />
       <HomeHero />
       <Battaglia />

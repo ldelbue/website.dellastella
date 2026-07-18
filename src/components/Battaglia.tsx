@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { battagliaVideoUrl } from '../shared/video'
+import { useT } from '../shared/i18n'
 
 const VIDEO_URL = battagliaVideoUrl()
 
@@ -32,6 +33,7 @@ const reveal = (p: number, from: number, to: number): CSSProperties => {
 }
 
 export default function Battaglia() {
+  const t = useT()
   const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [progress, setProgress] = useState(0)
@@ -86,7 +88,7 @@ export default function Battaglia() {
     <section
       id="battaglia"
       ref={sectionRef}
-      aria-label="Battaglia, frazione di Casaletto Spartano"
+      aria-label={t.battaglia.aria}
       className="relative bg-white w-full isolate"
       style={{ height: '280vh' }}
     >
@@ -130,31 +132,20 @@ export default function Battaglia() {
               className="inline-flex self-start items-center gap-2 rounded-pill bg-white/80 backdrop-blur px-3.5 py-1.5 text-[12.5px] font-medium tracking-wide text-ink-soft border border-hairline mb-4 md:mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              Il Luogo
+              {t.battaglia.badge}
             </span>
 
             <h2
               style={reveal(progress, 0.06, 0.2)}
               className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.08] tracking-tight text-ink mb-4 md:mb-7"
             >
-              Battaglia,{' '}
-              <span className="text-accent">nel cuore del Cilento</span>.
+              {t.battaglia.headingLead}{' '}
+              <span className="text-accent">{t.battaglia.headingAccent}</span>.
             </h2>
 
             <div className="flex flex-col gap-4 text-[15px] md:text-[17px] text-ink leading-relaxed">
-              <p style={reveal(progress, 0.22, 0.4)}>
-                Benvenuti a Battaglia, frazione di Casaletto Spartano. Qui il
-                silenzio è la musica principale e la vita scorre lenta,
-                scandita dai rintocchi del campanile di Santa Maria della
-                Stella.
-              </p>
-              <p style={reveal(progress, 0.42, 0.6)}>
-                Il tuo rifugio di autenticità nel cuore del Parco Nazionale
-                del Cilento. Tra il fresco dei boschi e la bellezza delle
-                Cascate Capelli di Venere, la nostra casa è il punto di
-                partenza ideale per esplorare sentieri e vivere antiche
-                tradizioni.
-              </p>
+              <p style={reveal(progress, 0.22, 0.4)}>{t.battaglia.p1}</p>
+              <p style={reveal(progress, 0.42, 0.6)}>{t.battaglia.p2}</p>
             </div>
           </div>
         </div>

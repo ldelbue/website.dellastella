@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion } from 'motion/react'
+import { useT } from '../shared/i18n'
 
 type GalleryItem = {
   src: string
@@ -45,10 +46,12 @@ const spanClasses: Record<NonNullable<GalleryItem['span']>, string> = {
 }
 
 export default function Galleria() {
+  const t = useT()
+
   return (
     <section
       id="galleria"
-      aria-label="Galleria"
+      aria-label={t.galleria.aria}
       className="relative w-full bg-white py-20 md:py-28 min-h-svh flex flex-col justify-center"
     >
       <div className="mx-auto w-full max-w-350 px-6 md:px-10">
@@ -61,7 +64,7 @@ export default function Galleria() {
         >
           <span className="inline-flex items-center gap-2 rounded-pill bg-brand-muted px-3.5 py-1.5 text-[12.5px] font-medium tracking-wide text-ink-soft mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            Galleria
+            {t.galleria.badge}
           </span>
         </motion.div>
 
@@ -81,6 +84,7 @@ export default function Galleria() {
 type GalleryTileProps = { item: GalleryItem; index: number }
 
 function GalleryTile({ item, index }: GalleryTileProps) {
+  const t = useT()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [hovered, setHovered] = useState(false)
 
@@ -121,7 +125,7 @@ function GalleryTile({ item, index }: GalleryTileProps) {
     >
       <img
         src={item.src}
-        alt={item.alt ?? 'Della Stella'}
+        alt={item.alt ?? t.galleria.defaultAlt}
         loading="lazy"
         draggable={false}
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-105"
@@ -158,7 +162,7 @@ function GalleryTile({ item, index }: GalleryTileProps) {
             >
               <path d="M8 5v14l11-7z" />
             </svg>
-            Video
+            {t.galleria.videoTag}
           </div>
         </>
       )}

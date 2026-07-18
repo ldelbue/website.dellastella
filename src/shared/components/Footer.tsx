@@ -1,3 +1,5 @@
+import { useT } from '../i18n'
+
 const GOLD = '#E5C58A'
 
 const WHATSAPP_URL = 'https://wa.me/393715982508'
@@ -9,6 +11,8 @@ const INSTAGRAM_URL =
 const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61587172526889'
 
 export default function Footer() {
+  const t = useT()
+
   return (
     <footer
       id="footer"
@@ -21,11 +25,10 @@ export default function Footer() {
               Della Stella
             </h4>
             <h6 className="font-heading text-xl leading-tight text-white/85 mb-4">
-              Casa Vacanza
+              {t.footer.subtitle}
             </h6>
             <p className="text-sm font-light leading-relaxed text-white/60 max-w-xs mx-auto md:mx-0">
-              Un rifugio di pace nel cuore del Cilento. Dove il tempo rallenta
-              e la natura respira.
+              {t.footer.description}
             </p>
           </div>
 
@@ -34,7 +37,7 @@ export default function Footer() {
               className="text-[11px] font-bold uppercase tracking-[0.22em] mb-6"
               style={{ color: GOLD }}
             >
-              Contatti
+              {t.footer.contatti}
             </h5>
             <ul className="space-y-4 text-sm font-light">
               <li>
@@ -79,7 +82,7 @@ export default function Footer() {
               className="text-[11px] font-bold uppercase tracking-[0.22em] mb-6"
               style={{ color: GOLD }}
             >
-              Seguici
+              {t.footer.seguici}
             </h5>
             <div className="flex justify-center md:justify-end gap-6">
               <a
@@ -107,9 +110,9 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-light text-white/40 gap-2">
-          <p>© 2026 www.dellastella.it</p>
+          <p>{t.footer.rights}</p>
           <p>
-            Designed by{' '}
+            {t.footer.designedBy}{' '}
             <a
               href="https://l.delbue.me"
               target="_blank"

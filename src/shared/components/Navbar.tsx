@@ -21,6 +21,8 @@ interface NavbarProps {
   hideOnScrollDown?: boolean
   alwaysVisibleAtTop?: boolean
   topThreshold?: number
+  openMenuLabel?: string
+  closeMenuLabel?: string
 }
 
 export default function Navbar({
@@ -29,6 +31,8 @@ export default function Navbar({
   hideOnScrollDown = false,
   alwaysVisibleAtTop = true,
   topThreshold = 40,
+  openMenuLabel = 'Apri menu',
+  closeMenuLabel = 'Chiudi menu',
 }: NavbarProps) {
   const [atTop, setAtTop] = useState(true)
   const [hidden, setHidden] = useState(false)
@@ -119,7 +123,7 @@ export default function Navbar({
 
         <button
           type="button"
-          aria-label={mobileOpen ? 'Chiudi menu' : 'Apri menu'}
+          aria-label={mobileOpen ? closeMenuLabel : openMenuLabel}
           aria-expanded={mobileOpen}
           className="lg:hidden w-9 h-9 -mr-0.5 flex items-center justify-center rounded-full text-ink hover:bg-brand-muted transition-colors"
           onClick={() => setMobileOpen((v) => !v)}

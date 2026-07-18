@@ -1,8 +1,12 @@
+import { useT } from '../shared/i18n'
+
 export default function HomeHero() {
+  const t = useT()
+
   return (
     <section
       id="top"
-      aria-label="Benvenuto"
+      aria-label={t.hero.aria}
       className="relative isolate overflow-hidden min-h-svh flex items-center justify-center bg-brand pt-28 md:pt-32 pb-16 md:pb-20 px-6"
     >
       <div
@@ -32,18 +36,16 @@ export default function HomeHero() {
           <svg className="w-3.5 h-3.5 text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 2l2.39 6.96L21.5 9.3l-5.6 4.3 2.05 7.1L12 16.9 6.05 20.7l2.05-7.1-5.6-4.3 7.11-.34L12 2z" />
           </svg>
-          Casa Vacanza · Aperta tutto l'anno
+          {t.hero.badge}
         </span>
 
         <div className="flex flex-col gap-5 md:gap-6">
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight text-ink">
-            Benvenuto sotto la{' '}
-            <span className="text-accent">nostra stella</span>.
+            {t.hero.headingLead}{' '}
+            <span className="text-accent">{t.hero.headingAccent}</span>.
           </h1>
           <p className="text-base md:text-lg text-ink-soft leading-relaxed max-w-xl mx-auto">
-            Della Stella è un rifugio di pietra e luce, pensato per chi cerca il
-            silenzio dei campi, il profumo del pane appena sfornato e le sere
-            passate a contare le costellazioni.
+            {t.hero.description}
           </p>
         </div>
 
@@ -57,12 +59,12 @@ export default function HomeHero() {
               ))}
             </span>
             <span className="font-semibold text-ink">5</span>
-            <span>· 8 recensioni</span>
+            <span>{t.hero.reviewsCount}</span>
           </span>
           <span className="hidden sm:inline text-hairline">•</span>
-          <span>Fino a 4 ospiti</span>
+          <span>{t.hero.guestsUpTo}</span>
           <span className="hidden sm:inline text-hairline">•</span>
-          <span>Check-in flessibile</span>
+          <span>{t.hero.flexibleCheckIn}</span>
         </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto">
@@ -70,7 +72,7 @@ export default function HomeHero() {
             href="#disponibilita"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-pill bg-accent text-white font-semibold text-[15px] shadow-nav hover:bg-accent-soft transition-colors"
           >
-            Verifica disponibilità
+            {t.hero.verifyAvailability}
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -79,12 +81,12 @@ export default function HomeHero() {
             href="#casa"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-pill bg-white/70 backdrop-blur text-ink font-semibold text-[15px] border border-hairline hover:bg-white transition-colors"
           >
-            Scopri la casa
+            {t.hero.discoverHouse}
           </a>
         </div>
 
         <ul className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[12.5px] text-ink-soft">
-          {['Wi-Fi', 'Parcheggio ampio', 'Cucina attrezzata', 'Intera casa per te'].map((f) => (
+          {t.hero.features.map((f) => (
             <li
               key={f}
               className="rounded-pill bg-brand-muted/70 px-3 py-1 border border-hairline"
@@ -97,10 +99,10 @@ export default function HomeHero() {
 
       <a
         href="#battaglia"
-        aria-label="Scorri verso il basso"
+        aria-label={t.hero.scrollDownAria}
         className="group absolute bottom-5 md:bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-ink-soft/80 hover:text-ink transition-colors"
       >
-        <span className="text-[10.5px] tracking-[0.22em] uppercase font-medium">Scorri</span>
+        <span className="text-[10.5px] tracking-[0.22em] uppercase font-medium">{t.hero.scroll}</span>
         <span className="flex h-9 w-6 items-start justify-center rounded-full border border-ink-soft/40 pt-1.5">
           <span className="block h-2 w-0.75 rounded-full bg-ink-soft/70 animate-[scrollDot_1.6s_ease-in-out_infinite]" />
         </span>

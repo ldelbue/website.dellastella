@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
+import { useLang } from '../i18n'
 
 type ImageSliderProps = {
   images: string[]
@@ -12,13 +13,37 @@ type ImageSliderProps = {
   className?: string
 }
 
+const SLIDER_LABELS = {
+  IT: {
+    defaultAlt: (i: number) => `Immagine ${i + 1}`,
+    prev: 'Immagine precedente',
+    next: 'Immagine successiva',
+    goto: (i: number) => `Vai all’immagine ${i + 1}`,
+  },
+  EN: {
+    defaultAlt: (i: number) => `Image ${i + 1}`,
+    prev: 'Previous image',
+    next: 'Next image',
+    goto: (i: number) => `Go to image ${i + 1}`,
+  },
+  DE: {
+    defaultAlt: (i: number) => `Bild ${i + 1}`,
+    prev: 'Vorheriges Bild',
+    next: 'Nächstes Bild',
+    goto: (i: number) => `Zu Bild ${i + 1} wechseln`,
+  },
+}
+
 export default function ImageSlider({
   images,
   aspectRatio = '16/10',
-  alt = (i) => `Immagine ${i + 1}`,
+  alt,
   swipeThreshold = 80,
   className = '',
 }: ImageSliderProps) {
+  const { lang } = useLang()
+  const labels = SLIDER_LABELS[lang]
+  const altText = alt ?? labels.defaultAlt
   const [index, setIndex] = useState(0)
   const total = images.length
 
@@ -52,7 +77,7 @@ export default function ImageSlider({
             <div key={src} className="flex-none w-full h-full relative">
               <img
                 src={src}
-                alt={alt(i)}
+                alt={altText(i)}
                 draggable={false}
                 loading={i === 0 ? 'eager' : 'lazy'}
                 className="w-full h-full object-cover pointer-events-none"
@@ -71,7 +96,7 @@ export default function ImageSlider({
       <button
         type="button"
         onClick={prev}
-        aria-label="Immagine precedente"
+        aria-label={labels.prev}
         className="absolute left-3 md:-left-4 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur border border-hairline shadow-nav hover:bg-white transition-transform hover:-translate-x-0.5 hover:-translate-y-1/2"
       >
         <svg
@@ -88,7 +113,7 @@ export default function ImageSlider({
       <button
         type="button"
         onClick={next}
-        aria-label="Immagine successiva"
+        aria-label={labels.next}
         className="absolute right-3 md:-right-4 top-1/2 -translate-y-1/2 grid place-items-center w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur border border-hairline shadow-nav hover:bg-white transition-transform hover:translate-x-0.5 hover:-translate-y-1/2"
       >
         <svg
@@ -109,7 +134,7 @@ export default function ImageSlider({
             key={i}
             type="button"
             onClick={() => setIndex(i)}
-            aria-label={`Vai all’immagine ${i + 1}`}
+            aria-label={labels.goto(i)}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               i === index
                 ? 'w-8 bg-accent'
