@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import Navbar from '../shared/components/Navbar'
 import type { NavItem } from '../shared/components/Navbar'
+import HomeHero from '../components/HomeHero'
+import Battaglia from '../components/Battaglia'
 
 type Lang = 'IT' | 'EN' | 'DE'
 const LANGS: Lang[] = ['IT', 'EN', 'DE']
+
+
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>('IT')
@@ -98,11 +102,8 @@ export default function Home() {
         hideOnScrollDown
         alwaysVisibleAtTop
       />
-      <div className="flex items-center justify-center h-screen bg-brand px-4">
-        <h1 className="text-3xl md:text-5xl font-bold text-ink text-center">
-          Della Stella!
-        </h1>
-      </div>
+      <HomeHero />
+      <Battaglia />
     </>
   )
 }
