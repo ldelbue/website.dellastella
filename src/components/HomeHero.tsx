@@ -84,7 +84,7 @@ export default function HomeHero() {
         </div>
 
         <ul className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[12.5px] text-ink-soft">
-          {['Wi-Fi', 'Parcheggio ampio', 'Parcheggio'].map((f) => (
+          {['Wi-Fi', 'Parcheggio ampio', 'Cucina attrezzata', 'Intera casa per te'].map((f) => (
             <li
               key={f}
               className="rounded-pill bg-brand-muted/70 px-3 py-1 border border-hairline"

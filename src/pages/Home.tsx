@@ -3,6 +3,13 @@ import Navbar from '../shared/components/Navbar'
 import type { NavItem } from '../shared/components/Navbar'
 import HomeHero from '../components/HomeHero'
 import Battaglia from '../components/Battaglia'
+import Casa from '../components/Casa'
+import Territorio from '../components/Territorio'
+import Esperienze from '../components/Esperienze'
+import Galleria from '../components/Galleria'
+import Recensioni from '../components/Recensioni'
+import Contatti from '../components/Contatti'
+import Footer from '../shared/components/Footer'
 
 type Lang = 'IT' | 'EN' | 'DE'
 const LANGS: Lang[] = ['IT', 'EN', 'DE']
@@ -104,6 +111,13 @@ export default function Home() {
       />
       <HomeHero />
       <Battaglia />
+      <Casa />
+      <Territorio />
+      <Esperienze />
+      <Galleria />
+      <Recensioni />
+      <Contatti />
+      <Footer />
     </>
   )
 }
