@@ -8,9 +8,9 @@ import { useT } from '../shared/i18n'
  */
 const PLACE_IMAGES: string[] = [
   'https://cdn.dellastella.it/assets/cascate.webp',
-  'https://picsum.photos/seed/parco-cilento/1200/1500',
-  'https://picsum.photos/seed/golfo-policastro/1200/1500',
-  'https://picsum.photos/seed/certosa-padula/1200/1500',
+  'https://www.terredibosco.it/wp-content/uploads/2021/10/il-cilento-ponte-gole-del-calore-1.jpg',
+  'https://www.asnuaps.it/wp-content/uploads/2023/04/parco-Nazionale-del-Cilento-Vallo-di-Diano-e-Alburni.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/a/af/Padula_certosa_vue_2_%28sec_ver%29.jpg',
 ]
 
 export default function Territorio() {

@@ -40,9 +40,50 @@ export default function Battaglia() {
 
   useEffect(() => {
     const section = sectionRef.current
-    if (!section) return
+    const video = videoRef.current
+    if (!section || !video) return
+
+    // Legacy iOS + browser embedded (WeChat, ecc.) richiedono attributi
+    // aggiuntivi oltre al playsInline standard.
+    video.setAttribute('webkit-playsinline', 'true')
+    video.setAttribute('x5-playsinline', 'true')
 
     let raf = 0
+    let warmedUp = false
+    let scrubDisabled = false
+    let seekFailures = 0
+
+    const isTimeBuffered = (time: number) => {
+      const buffered = video.buffered
+      for (let i = 0; i < buffered.length; i++) {
+        if (time >= buffered.start(i) && time <= buffered.end(i)) return true
+      }
+      return false
+    }
+
+    // iOS Safari non permette seek finché il decoder non è stato attivato
+    // con almeno un play(). Facciamo play()→pause() muto per sbloccarlo.
+    const warmup = async () => {
+      if (warmedUp) return
+      try {
+        await video.play()
+        video.pause()
+        warmedUp = true
+      } catch {
+        /* autoplay bloccato (Low Power Mode); ritentiamo al primo gesto */
+      }
+    }
+
+    // Se il seek continua a fallire (device molto restrittivo o video
+    // non-seekable), rinunciamo allo scrub e riproduciamo il video in loop
+    // — l'utente vede comunque l'animazione, senza aggancio allo scroll.
+    const fallbackToLoop = () => {
+      if (scrubDisabled) return
+      scrubDisabled = true
+      video.loop = true
+      video.play().catch(() => {})
+    }
+
     const update = () => {
       cancelAnimationFrame(raf)
       raf = requestAnimationFrame(() => {
@@ -51,34 +92,53 @@ export default function Battaglia() {
         if (scrollable <= 0) return
         const p = Math.max(0, Math.min(1, -rect.top / scrollable))
         setProgress(p)
-        const video = videoRef.current
-        if (video) {
-          const d = video.duration
-          if (Number.isFinite(d) && d > 0) {
-            try {
-              video.currentTime = p * d
-            } catch {
-              /* transient seek noise */
-            }
-          }
+
+        if (scrubDisabled) return
+        const d = video.duration
+        if (!Number.isFinite(d) || d <= 0) return
+        const target = p * d
+        if (!isTimeBuffered(target)) return
+        try {
+          video.currentTime = target
+          seekFailures = 0
+        } catch {
+          seekFailures++
+          if (seekFailures > 8) fallbackToLoop()
         }
       })
     }
 
-    const video = videoRef.current
     const onLoaded = () => {
-      if (video) video.dataset.ready = 'true'
+      video.dataset.ready = 'true'
+      warmup()
       update()
     }
-    video?.addEventListener('loadeddata', onLoaded)
-    if (video && video.readyState >= 2) onLoaded()
+
+    const onFirstGesture = () => {
+      warmup()
+    }
+
+    const onError = () => {
+      fallbackToLoop()
+    }
+
+    video.addEventListener('loadeddata', onLoaded)
+    video.addEventListener('error', onError)
+    if (video.readyState >= 2) onLoaded()
+
+    window.addEventListener('touchstart', onFirstGesture, {
+      once: true,
+      passive: true,
+    })
     window.addEventListener('scroll', update, { passive: true })
     window.addEventListener('resize', update)
     update()
 
     return () => {
       cancelAnimationFrame(raf)
-      video?.removeEventListener('loadeddata', onLoaded)
+      video.removeEventListener('loadeddata', onLoaded)
+      video.removeEventListener('error', onError)
+      window.removeEventListener('touchstart', onFirstGesture)
       window.removeEventListener('scroll', update)
       window.removeEventListener('resize', update)
     }

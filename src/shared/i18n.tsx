@@ -125,7 +125,7 @@ const it: Translations = {
     headingLead: 'Benvenuto sotto la',
     headingAccent: 'nostra stella',
     description:
-      'Della Stella è un rifugio di pietra e luce, pensato per chi cerca il silenzio dei campi, il profumo del pane appena sfornato e le sere passate a contare le costellazioni.',
+      'Della stella, un rifugio dove il silenzio racconta, il tempo rallenta e ogni istante invita a riscoprire la bellezza della vita',
     reviewsCount: '· 8 recensioni',
     guestsUpTo: 'Fino a 4 ospiti',
     flexibleCheckIn: 'Check-in flessibile',
@@ -287,7 +287,7 @@ const en: Translations = {
     headingLead: 'Welcome under',
     headingAccent: 'our star',
     description:
-      'Della Stella is a refuge of stone and light, made for those who seek the silence of the fields, the scent of freshly baked bread, and evenings spent counting the constellations.',
+      'Della Stella, a refuge where silence tells stories, time slows down, and every moment invites you to rediscover the beauty of life.',
     reviewsCount: '· 8 reviews',
     guestsUpTo: 'Up to 4 guests',
     flexibleCheckIn: 'Flexible check-in',
@@ -449,7 +449,7 @@ const de: Translations = {
     headingLead: 'Willkommen unter',
     headingAccent: 'unserem Stern',
     description:
-      'Della Stella ist ein Refugium aus Stein und Licht — für alle, die die Stille der Felder suchen, den Duft frisch gebackenen Brotes und Abende, an denen man die Sternbilder zählt.',
+      'Della Stella, ein Zufluchtsort, an dem die Stille Geschichten erzählt, die Zeit langsamer vergeht und jeder Moment dazu einlädt, die Schönheit des Lebens neu zu entdecken.',
     reviewsCount: '· 8 Bewertungen',
     guestsUpTo: 'Bis zu 4 Gäste',
     flexibleCheckIn: 'Flexibler Check-in',

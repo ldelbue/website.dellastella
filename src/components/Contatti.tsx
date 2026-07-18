@@ -29,11 +29,12 @@ export default function Contatti() {
     >
       <div className="mx-auto w-full max-w-350 px-6 md:px-10 flex flex-col gap-16 md:gap-24">
         <motion.div
+          id="disponibilita"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative rounded-card overflow-hidden shadow-[0_30px_70px_rgba(22,36,42,0.22)]"
+          className="relative rounded-card overflow-hidden shadow-[0_30px_70px_rgba(22,36,42,0.22)] scroll-mt-24 md:scroll-mt-28"
         >
           <img
             src={CTA_BG_IMAGE}

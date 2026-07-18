@@ -80,7 +80,7 @@ export default function ImageSlider({
                 alt={altText(i)}
                 draggable={false}
                 loading={i === 0 ? 'eager' : 'lazy'}
-                className="w-full h-full object-cover pointer-events-none transition-transform duration-[1400ms] ease-out group-hover:scale-[1.025]"
+                className="w-full h-full object-cover pointer-events-none transition-transform duration-[1400ms] ease-out"
               />
             </div>
           ))}

@@ -17,26 +17,23 @@ type GalleryItem = {
  */
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    src: 'https://picsum.photos/seed/gallery-1/1400/1000',
+    src: 'https://cdn.dellastella.it/assets/battaglia.webp',
     span: 'large',
-    video: 'https://www.dellastella.it/assets/battaglia-animeted-low.mp4',
-    alt: 'Della Stella, vista principale',
+    video: 'https://cdn.dellastella.it/assets/battaglia-drone.mp4',
+    alt: 'Battaglia',
   },
-  { src: 'https://picsum.photos/seed/gallery-2/800/800', alt: 'Dettaglio 1' },
+  { src: 'https://cdn.dellastella.it/assets/WhatsApp Image 2026-07-18 at 17.55.14.jpeg', span: "tall", alt: 'Dettaglio 1' },
   {
-    src: 'https://picsum.photos/seed/gallery-3/800/1200',
-    span: 'tall',
-    alt: 'Dettaglio verticale',
+    src: 'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmr-3IBxjl5oxG3a1ldRM9yvV0r3QjG6NsPzTJAlfTcrXOTZqDRH3JnKNAfOCJkCs1B4cXy7HTiTnVT9CsbuTQ-Zqxb8_zHqLx59pj99LfhOY4OJnNC9J2d7HK4Vg88foMaEUkZjHazA2ke=s1354-k-no'
   },
-  { src: 'https://picsum.photos/seed/gallery-4/800/800', alt: 'Dettaglio 2' },
   {
-    src: 'https://picsum.photos/seed/gallery-5/1400/800',
+    src: 'https://cdn.dellastella.it/assets/mare.JPG',
     span: 'wide',
-    video: 'https://www.dellastella.it/assets/battaglia-animeted-low.mp4',
-    alt: 'Panoramica',
   },
-  { src: 'https://picsum.photos/seed/gallery-6/800/800', alt: 'Dettaglio 3' },
-  { src: 'https://picsum.photos/seed/gallery-7/800/800', alt: 'Dettaglio 4' },
+  { src: 'https://cdn.dellastella.it/assets/panorama1.webp' },
+  { src: 'https://cdn.dellastella.it/assets/panorama2.webp'},
+  { src: 'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnK8XPQWeJnWWSKa4bqM-l30TX_S85BfB3jFHHVxuSvtN_LPQpmgGWK8RFTCPEydIJVOTWZzzlkG9JvCiWw9A6vOvglJpZqmq_i3sTFBN-5xxsRl8R1W6bfdV-CkbPDBeLWtKL5rB7TTDQ=s2048-v1' },
+
 ]
 
 const spanClasses: Record<NonNullable<GalleryItem['span']>, string> = {

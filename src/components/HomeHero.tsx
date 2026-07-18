@@ -104,7 +104,7 @@ export default function HomeHero({ animateIn }: HomeHeroProps) {
           </a>
         </motion.div>
 
-        <motion.ul variants={reveal} transition={{ duration: .65, ease: [0.22, 1, 0.36, 1] }} className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[12.5px] text-ink-soft">
+        <motion.ul variants={reveal} transition={{ duration: .65, ease: [0.22, 1, 0.36, 1] }} className="flex flex-wrap mb-10 items-center justify-center gap-2 pt-2 text-[12.5px] text-ink-soft">
           {t.hero.features.map((f, i) => (
             <motion.li
               key={f}

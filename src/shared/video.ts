@@ -22,14 +22,31 @@ function getConnection(): NetworkInfo | null {
   return n.connection ?? n.mozConnection ?? n.webkitConnection ?? null
 }
 
+function isIOSLike(): boolean {
+  if (typeof navigator === 'undefined') return false
+  const ua = navigator.userAgent
+  if (/iPhone|iPad|iPod/i.test(ua)) return true
+  // iPad su iOS 13+ dichiara Mac in UA ma ha input touch.
+  if (
+    ua.includes('Mac') &&
+    typeof document !== 'undefined' &&
+    'ontouchend' in document
+  ) {
+    return true
+  }
+  return false
+}
+
 export function detectVideoQuality(): VideoQuality {
   const conn = getConnection()
-  if (!conn) return 'high'
-  if (conn.saveData) return 'low'
-  const eff = conn.effectiveType
-  const down = typeof conn.downlink === 'number' ? conn.downlink : Infinity
+  if (conn?.saveData) return 'low'
+  const eff = conn?.effectiveType
+  const down = typeof conn?.downlink === 'number' ? conn.downlink : Infinity
   if (eff === 'slow-2g' || eff === '2g' || down < 1) return 'low'
   if (eff === '3g' || down < 4) return 'medium'
+  // Su iOS Safari l'API connection non esiste: default prudente a medium
+  // per evitare buffering infinito su rete cellulare.
+  if (!conn && isIOSLike()) return 'medium'
   return 'high'
 }
 
