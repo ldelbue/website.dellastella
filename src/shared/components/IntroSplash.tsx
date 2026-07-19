@@ -15,7 +15,7 @@ export default function IntroSplash({ onFinish }: Props) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-700 ease-in-out ${
+      className={`fixed h-screen inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-700 ease-in-out ${
         fadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >

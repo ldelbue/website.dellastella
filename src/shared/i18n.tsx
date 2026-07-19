@@ -126,7 +126,7 @@ const it: Translations = {
     headingAccent: 'nostra stella',
     description:
       'Della stella, un rifugio dove il silenzio racconta, il tempo rallenta e ogni istante invita a riscoprire la bellezza della vita',
-    reviewsCount: '· 8 recensioni',
+    reviewsCount: '· 9 recensioni',
     guestsUpTo: 'Fino a 4 ospiti',
     flexibleCheckIn: 'Check-in flessibile',
     verifyAvailability: 'Verifica disponibilità',
@@ -288,7 +288,7 @@ const en: Translations = {
     headingAccent: 'our star',
     description:
       'Della Stella, a refuge where silence tells stories, time slows down, and every moment invites you to rediscover the beauty of life.',
-    reviewsCount: '· 8 reviews',
+    reviewsCount: '· 9 reviews',
     guestsUpTo: 'Up to 4 guests',
     flexibleCheckIn: 'Flexible check-in',
     verifyAvailability: 'Check availability',
@@ -450,7 +450,7 @@ const de: Translations = {
     headingAccent: 'unserem Stern',
     description:
       'Della Stella, ein Zufluchtsort, an dem die Stille Geschichten erzählt, die Zeit langsamer vergeht und jeder Moment dazu einlädt, die Schönheit des Lebens neu zu entdecken.',
-    reviewsCount: '· 8 Bewertungen',
+    reviewsCount: '· 9 Bewertungen',
     guestsUpTo: 'Bis zu 4 Gäste',
     flexibleCheckIn: 'Flexibler Check-in',
     verifyAvailability: 'Verfügbarkeit prüfen',

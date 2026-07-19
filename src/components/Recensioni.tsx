@@ -23,6 +23,11 @@ const REVIEWS: Review[] = [
     text: 'Bellissima esperienza, camera che affaccia nella piazzetta super carina ed accogliente, un’esperienza molto bella e posto tranquillo e comodo anche per il parcheggio e per rilassarti seduto sulle panchine in piazzetta ascoltando il cinguettio delle rondini. Sicuramente ci tornerò, e per concludere complimenti ai padroni di casa, molto gentili e disponibili per qualsiasi cosa.',
     author: 'Regina Rivelli',
   },
+  {
+    stars: 5,
+    text: 'Abbiamo soggiornato alla Della Stella Casa Vacanze e siamo stati benissimo! La casa è molto accogliente, pulita e si trova proprio nella piazza del borgo. È il posto perfetto per chi cerca relax nella natura del Parco Nazionale del Cilento. La posizione è fantastica: a solo 1,4 km dalle meravigliose Cascate Capelli di Venere e a circa 20 minuti dal mare. L\'host è stato molto disponibile. Consigliatissimo per una vacanza tra natura e autenticità!',
+    author: 'Francesca Amorelli',
+  },
 ]
 
 export default function Recensioni() {
