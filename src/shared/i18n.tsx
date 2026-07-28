@@ -123,9 +123,9 @@ const it: Translations = {
     aria: 'Benvenuto',
     badge: "Casa Vacanza · Aperta tutto l'anno",
     headingLead: 'Benvenuto sotto la',
-    headingAccent: 'nostra stella',
+    headingAccent: 'nostra Stella',
     description:
-      'Della stella, un rifugio dove il silenzio racconta, il tempo rallenta e ogni istante invita a riscoprire la bellezza della vita',
+      'Della Stella, un rifugio dove il silenzio racconta, il tempo rallenta e ogni istante invita a riscoprire la bellezza della vita',
     reviewsCount: '· 9 recensioni',
     guestsUpTo: 'Fino a 4 ospiti',
     flexibleCheckIn: 'Check-in flessibile',
