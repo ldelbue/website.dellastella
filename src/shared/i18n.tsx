@@ -246,7 +246,7 @@ const it: Translations = {
     whatsappCta: 'Scrivici su WhatsApp',
     emailCta: 'Invia una email',
     howToBadge: 'Come arrivare',
-    howToLead: 'Battaglia di',
+    howToLead: 'Battaglia, frazione di',
     howToAccent: 'Casaletto Spartano',
     distances: [
       'Cascate Capelli di Venere',
@@ -408,7 +408,7 @@ const en: Translations = {
     whatsappCta: 'Message us on WhatsApp',
     emailCta: 'Send an email',
     howToBadge: 'How to get here',
-    howToLead: 'Battaglia,',
+    howToLead: 'Battaglia, hamlet of',
     howToAccent: 'Casaletto Spartano',
     distances: [
       'Capelli di Venere Waterfalls',
@@ -570,7 +570,7 @@ const de: Translations = {
     whatsappCta: 'Schreib uns auf WhatsApp',
     emailCta: 'E-Mail senden',
     howToBadge: 'Anfahrt',
-    howToLead: 'Battaglia in',
+    howToLead: 'Battaglia, Ortsteil von',
     howToAccent: 'Casaletto Spartano',
     distances: [
       'Wasserfälle Capelli di Venere',
