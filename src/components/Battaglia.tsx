@@ -49,9 +49,18 @@ export default function Battaglia() {
     video.setAttribute('x5-playsinline', 'true')
 
     let raf = 0
+    let running = true
+    let loopActive = false
     let warmedUp = false
     let scrubDisabled = false
     let seekFailures = 0
+
+    // rawP = posizione scroll reale; displayedP = valore smussato che guida
+    // l'animazione. Il lerp tra i due crea inerzia: ogni scatto del mouse
+    // genera un breve "glide" invece di fermarsi di colpo.
+    let rawP = 0
+    let displayedP = 0
+    const LERP = 0.15 // frazione coperta per frame a ~60 fps (≈ 200 ms per 95%)
 
     const isTimeBuffered = (time: number) => {
       const buffered = video.buffered
@@ -84,34 +93,66 @@ export default function Battaglia() {
       video.play().catch(() => {})
     }
 
-    const update = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        const rect = section.getBoundingClientRect()
-        const scrollable = section.offsetHeight - window.innerHeight
-        if (scrollable <= 0) return
-        const p = Math.max(0, Math.min(1, -rect.top / scrollable))
-        setProgress(p)
+    const readRaw = () => {
+      const rect = section.getBoundingClientRect()
+      const scrollable = section.offsetHeight - window.innerHeight
+      if (scrollable <= 0) return
+      rawP = Math.max(0, Math.min(1, -rect.top / scrollable))
+    }
 
-        if (scrubDisabled) return
+    const tick = () => {
+      if (!running) return
+
+      displayedP += (rawP - displayedP) * LERP
+      const settled = Math.abs(rawP - displayedP) < 0.0005
+      if (settled) displayedP = rawP
+
+      setProgress(displayedP)
+
+      if (!scrubDisabled) {
         const d = video.duration
-        if (!Number.isFinite(d) || d <= 0) return
-        const target = p * d
-        if (!isTimeBuffered(target)) return
-        try {
-          video.currentTime = target
-          seekFailures = 0
-        } catch {
-          seekFailures++
-          if (seekFailures > 8) fallbackToLoop()
+        if (Number.isFinite(d) && d > 0) {
+          const target = displayedP * d
+          if (isTimeBuffered(target)) {
+            try {
+              video.currentTime = target
+              seekFailures = 0
+            } catch {
+              seekFailures++
+              if (seekFailures > 8) fallbackToLoop()
+            }
+          }
         }
-      })
+      }
+
+      if (!settled) {
+        raf = requestAnimationFrame(tick)
+      } else {
+        loopActive = false
+      }
+    }
+
+    const startLoop = () => {
+      if (loopActive) return
+      loopActive = true
+      raf = requestAnimationFrame(tick)
+    }
+
+    const onScroll = () => {
+      readRaw()
+      startLoop()
+    }
+
+    const onResize = () => {
+      readRaw()
+      startLoop()
     }
 
     const onLoaded = () => {
       video.dataset.ready = 'true'
       warmup()
-      update()
+      readRaw()
+      startLoop()
     }
 
     const onFirstGesture = () => {
@@ -130,17 +171,19 @@ export default function Battaglia() {
       once: true,
       passive: true,
     })
-    window.addEventListener('scroll', update, { passive: true })
-    window.addEventListener('resize', update)
-    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
+    readRaw()
+    startLoop()
 
     return () => {
+      running = false
       cancelAnimationFrame(raf)
       video.removeEventListener('loadeddata', onLoaded)
       video.removeEventListener('error', onError)
       window.removeEventListener('touchstart', onFirstGesture)
-      window.removeEventListener('scroll', update)
-      window.removeEventListener('resize', update)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [])
 
