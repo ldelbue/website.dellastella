@@ -12,13 +12,13 @@
   --color-ink: #1A1610;           /* testo primario — nero caldo */
   --color-ink-soft: #6E5F48;      /* testo muted — taupe */
 
-  /* Accenti — oro antico + champagne */
-  --color-accent: #A08037;        /* accento principale — oro antico */
-  --color-accent-soft: #E5C58A;   /* accento secondario — champagne */
+  /* Accenti — oro puro + oro chiaro */
+  --color-accent: #D1B000;        /* accento principale — oro puro */
+  --color-accent-soft: #EDD872;   /* accento secondario — oro chiaro */
 
   /* Alias legacy per compatibilità con componenti esistenti */
-  --color-forest: #A08037;
-  --color-forest-soft: #E5C58A;
+  --color-forest: #D1B000;
+  --color-forest-soft: #EDD872;
 
   /* Superfici scure / hairline */
   --color-surface: #F6F1E6;
