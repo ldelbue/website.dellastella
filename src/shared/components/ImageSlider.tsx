@@ -10,6 +10,8 @@ type ImageSliderProps = {
   alt?: (index: number) => string
   /** Soglia in px (o momentum equivalente) per far scattare il cambio slide. */
   swipeThreshold?: number
+  /** Callback fired on tap (no drag) — passes the current slide index. */
+  onImageClick?: (index: number) => void
   className?: string
 }
 
@@ -39,6 +41,7 @@ export default function ImageSlider({
   aspectRatio = '16/10',
   alt,
   swipeThreshold = 80,
+  onImageClick,
   className = '',
 }: ImageSliderProps) {
   const { lang } = useLang()
@@ -70,6 +73,7 @@ export default function ImageSlider({
             if (power < -swipeThreshold) next()
             else if (power > swipeThreshold) prev()
           }}
+          onTap={() => onImageClick?.(index)}
           style={{ cursor: 'grab' }}
           whileTap={{ cursor: 'grabbing' }}
         >

@@ -1,25 +1,22 @@
 import type { ReactNode } from 'react'
 import { motion } from 'motion/react'
 import ImageSlider from '../shared/components/ImageSlider'
+import { MediaGallery, useMediaGallery } from '../shared/components/MediaGallery'
 import SimpleCard from '../shared/components/SimpleCard'
 import { useT } from '../shared/i18n'
 
 const CASA_IMAGES: string[] = [
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnARPVsPxTVRYnZ1sV8NzynkneVfXJGYykxdPA3ovAOircjAAxzjLEpUedq4UNCkhjhfkm9Hv-Ujxt7E10oaeUIqyKeWCVJUDwjeDdMz1C4GW-a29H8HdnTQ-992lqP1zAIm3iw8WJuwlhA=s3072-v1',
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmqqXEVdDRVfP_YR-hpVKZ2MRDNsE9t88Z1ExFxDJawZbrt9c5wpFJ1ggIzuXymQZxqzZd0N7z30UfZWzeBvSDV8hX4S_1_Pu_gD_F4ggb7Y3ePwhA4SX2y3Fxi5txDa0tj56TdJsQWwEk=s3072-v1',
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlrG01DfTIOVO9nvjY_MwRDWSUorLHqa0phuqB2JhT0awm_Ln_r4hbqasXFzrA2oweKrpA1pyXtBYv-ft-zjSygGl6ZQmWRnTf3M8NMpQxOJgO2nM5C89PP6gVRCqT0ygC3f9s-m8m4F3I=s870-k-no',
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlusvVQBrjeEsZ7enZuUvhKNSQYhUf_G86fcVbSDd0kQZ6k4ZF9o2DmZYEh-s9MokRcK6yp0WIxgkhMdRTYzwSojk-Qu7oeYMqCb-Rils8n1Qfyb9SBZCBDf4kB5J1gmNDn3od4BoFAHdMD=s1354-k-no',
+  'https://cdn.dellastella.it/assets/casa/camera1.1.webp',
+  'https://cdn.dellastella.it/assets/casa/camera1.2.webp',
+  'https://cdn.dellastella.it/assets/casa/camera1.3.webp',
+  'https://cdn.dellastella.it/assets/casa/bagno.webp',
 
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlGvpd8i9kWmPbiVOjYsyXGW5z9VfqCG7r01fwuDKcxF6kM6L3h848EBkD0xC1aEXn3qMvxUFnr-IRV0Fj5k3oHtJnc-2PRIzpMpxQIk5YHD3Zpp_VgmkLL3Wvt0XlRH-NmvcaW52eDPDc=s676-k-no',
+  'https://cdn.dellastella.it/assets/casa/cucina1.webp',
 
 
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlvZonl6CoHtX8gRRfaCihSgIEfvrS2vNRPRwKXppVtLKRTlTZv68Wwu5-4YYccAZkgNxr1zfVDMvxV44KtVz9QnpozNSJfNc4vowD5jQQ9oDNFjGfuo76H8InqIq2b12Z1e_b3m8alGB2y=s812-k-no',
-  'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlpvlwKHJUImOSNflpPFEhJsfs2YUTUH0U41hjsKaKr7ZrXzMNI9GmEtEOav-B9rqaW0oGNCp--r-KDBlz6e3vn7vLj3O1y_F9fJuKVlgUGmG61Mv9Uc2sy2koxPL8imvswazdU6TrcRzyb=s812-k-no',
-'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkWOj0Sautd0bIG5aSeP0W13rToLEtQ4vwD2507HZfU3BTom6vU8INZBw6eGhDKQGnGrtQ14qIX90xYeBRdfnA8KlkqtBy1gejmo4YdINUdCiq-aEnDlGRi2b9UzPKQiQ085unGjMJdYLs=s812-k-no',
-
-    'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmbnqHeeqHn40cgEyCYCylSpwn9diRjNSnjb6n2HwHTBTE1rEiSWqqGySOT4m7njwSv3bE3GByiCJXVK3R4vcN94itVsbFFai79fLjZ5U1rUePw3DlmyRNVmnkeVPiryszfQRvOxHpYDblf=s1354-k-no',
-    'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkPqBt-IlbOo3MgSdzFSWmerzX0X56b5pCSHPayfMJZJ8epoYzb6XTN1rqqFB821WkgjEfXVpAOuVajBvhRluEOe0-rGDi8PUuqWBrAqjVxj5idmp8EkjbCfSeINCzjaZZqIz__VLpBbTwL=s1016-k-no'
-
+  'https://cdn.dellastella.it/assets/casa/camera2.1.webp',
+  'https://cdn.dellastella.it/assets/casa/camera2.2.webp',
+'https://cdn.dellastella.it/assets/casa/camera2.3.webp'
 ]
 
 const iconStroke = {
@@ -105,10 +102,9 @@ export default function Casa() {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
         >
-            <ImageSlider
-                images={CASA_IMAGES}
-                alt={(i) => t.casa.photoAlt(i)}
-            />
+          <MediaGallery>
+            <CasaGallerySlider images={CASA_IMAGES} altFn={(i) => t.casa.photoAlt(i)} />
+          </MediaGallery>
         </motion.div>
 
 
@@ -132,5 +128,28 @@ export default function Casa() {
           </motion.div>
       </div>
     </section>
+  )
+}
+
+type CasaGallerySliderProps = {
+  images: string[]
+  altFn: (i: number) => string
+}
+
+function CasaGallerySlider({ images, altFn }: CasaGallerySliderProps) {
+  const { openByIndex } = useMediaGallery()
+  return (
+    <>
+      <div className="hidden" aria-hidden="true">
+        {images.map((src, i) => (
+          <MediaGallery.Item key={src} src={src} alt={altFn(i)} />
+        ))}
+      </div>
+      <ImageSlider
+        images={images}
+        alt={altFn}
+        onImageClick={openByIndex}
+      />
+    </>
   )
 }

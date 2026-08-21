@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { useT } from '../shared/i18n'
+import { MediaGallery, useMediaGallery } from '../shared/components/MediaGallery'
 
 type GalleryItem = {
   src: string
@@ -24,15 +25,11 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   { src: 'https://cdn.dellastella.it/assets/WhatsApp Image 2026-07-18 at 17.55.14.jpeg', span: "tall", alt: 'Dettaglio 1' },
   {
-    src: 'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmr-3IBxjl5oxG3a1ldRM9yvV0r3QjG6NsPzTJAlfTcrXOTZqDRH3JnKNAfOCJkCs1B4cXy7HTiTnVT9CsbuTQ-Zqxb8_zHqLx59pj99LfhOY4OJnNC9J2d7HK4Vg88foMaEUkZjHazA2ke=s1354-k-no'
-  },
-  {
     src: 'https://cdn.dellastella.it/assets/mare.JPG',
     span: 'wide',
   },
   { src: 'https://cdn.dellastella.it/assets/panorama1.webp' },
   { src: 'https://cdn.dellastella.it/assets/panorama2.webp'},
-  { src: 'https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnK8XPQWeJnWWSKa4bqM-l30TX_S85BfB3jFHHVxuSvtN_LPQpmgGWK8RFTCPEydIJVOTWZzzlkG9JvCiWw9A6vOvglJpZqmq_i3sTFBN-5xxsRl8R1W6bfdV-CkbPDBeLWtKL5rB7TTDQ=s2048-v1' },
 
 ]
 
@@ -65,14 +62,16 @@ export default function Galleria() {
           </span>
         </motion.div>
 
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[220px] gap-2 md:gap-3"
-          style={{ gridAutoFlow: 'dense' }}
-        >
-          {GALLERY_ITEMS.map((item, i) => (
-            <GalleryTile key={item.src} item={item} index={i} />
-          ))}
-        </div>
+        <MediaGallery>
+          <div
+            className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[220px] gap-2 md:gap-3"
+            style={{ gridAutoFlow: 'dense' }}
+          >
+            {GALLERY_ITEMS.map((item, i) => (
+              <GalleryTile key={item.src} item={item} index={i} />
+            ))}
+          </div>
+        </MediaGallery>
       </div>
     </section>
   )
@@ -82,8 +81,20 @@ type GalleryTileProps = { item: GalleryItem; index: number }
 
 function GalleryTile({ item, index }: GalleryTileProps) {
   const t = useT()
+  const id = useId()
+  const { register, unregister, open } = useMediaGallery()
   const videoRef = useRef<HTMLVideoElement>(null)
   const [hovered, setHovered] = useState(false)
+
+  useEffect(() => {
+    register(id, {
+      src: item.video ?? item.src,
+      type: item.video ? 'video' : 'image',
+      poster: item.video ? item.src : undefined,
+      alt: item.alt,
+    })
+    return () => unregister(id)
+  }, [id, item.src, item.video, item.alt, register, unregister])
 
   const handleEnter = () => {
     setHovered(true)
@@ -118,7 +129,8 @@ function GalleryTile({ item, index }: GalleryTileProps) {
       }}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      className={`group relative overflow-hidden rounded-card bg-brand-muted ${spanClass}`}
+      onClick={() => open(id)}
+      className={`group relative overflow-hidden rounded-card bg-brand-muted cursor-zoom-in ${spanClass}`}
     >
       <img
         src={item.src}

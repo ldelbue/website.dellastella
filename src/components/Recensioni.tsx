@@ -10,11 +10,6 @@ type Review = {
 const REVIEWS: Review[] = [
   {
     stars: 5,
-    text: "Appartamento accogliente e spazioso, situato in un borgo tranquillo, nella piazzetta della chiesa, con posteggio auto vicino. L'host gentile e disponibile ci ha accolto di persona. Abbiamo soggiornato bene e ci torneremmo volentieri.",
-    author: 'Fabio Almasio',
-  },
-  {
-    stars: 5,
     text: "Chiunque sia alla ricerca dell'Italia autentica, ami la pace e la tranquillità, apprezzi le escursioni nella natura incontaminata e la cordialità dei padroni di casa, troverà in Casa Vacanza della Stella il luogo ideale dove soggiornare. La casa vacanze si trova direttamente sul sentiero escursionistico del San Nilo e le splendide cascate dei Capelli di Venere sono facilmente raggiungibili a piedi (circa 20 minuti). Tutto è tenuto in modo impeccabile e pulito. Ci piacerebbe molto tornare!",
     author: 'Michael S.',
   },
