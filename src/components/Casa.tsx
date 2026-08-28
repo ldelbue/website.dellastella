@@ -21,7 +21,7 @@ const PHOTOS_360: Photo360[] = [
     description: 'La cucina attrezzata',
   },
   {
-    url: 'https://momento360.com/e/u/96332b4f97054333a6441e6896cc3f76?utm_campaign=embed&utm_source=other&utm_medium=embed&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
+    url: 'https://momento360.com/e/u/81bbf607b8af48bf895b92b98434c887?utm_campaign=embed&utm_source=other&utm_medium=embed&size=medium&display-plan=false',
     label: 'Camera con letti singoli',
     description: 'La seconda camera da letto',
   },
