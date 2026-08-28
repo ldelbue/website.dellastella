@@ -11,24 +11,24 @@ const Viewer360 = lazy(() => import('./Viewer360'))
 
 const PHOTOS_360: Photo360[] = [
   {
-    src: '/3d/camera1.webp',
+    url: 'https://momento360.com/e/u/932afc30dc44404c87d6af59f0e41304?utm_campaign=embed&utm_source=other&utm_medium=embed&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     label: 'Camera matrimoniale',
     description: 'La camera da letto matrimoniale',
   },
   {
-    src: '/3d/cucina.webp',
+    url: 'https://momento360.com/e/u/47c5161dfcb340f8980cd424c9af4ada?utm_campaign=embed&utm_source=other&utm_medium=embed&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     label: 'Cucina',
     description: 'La cucina attrezzata',
   },
   {
-    src: '/3d/bagno.webp',
-    label: 'Bagno',
-    description: 'Il bagno privato',
-  },
-  {
-    src: '/3d/camera2.webp',
+    url: 'https://momento360.com/e/u/96332b4f97054333a6441e6896cc3f76?utm_campaign=embed&utm_source=other&utm_medium=embed&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
     label: 'Camera con letti singoli',
     description: 'La seconda camera da letto',
+  },
+  {
+    url: 'https://momento360.com/e/u/ed8582efe7e341338cb600636890bbe8?utm_campaign=embed&utm_source=other&utm_medium=embed&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true',
+    label: 'Bagno',
+    description: 'Il bagno privato',
   },
 ]
 
@@ -118,7 +118,7 @@ export default function Casa() {
       </Suspense>
 
       <div className="mx-auto max-w-350 px-6 md:px-10">
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-5 mb-10 md:mb-14">
+        <div className="mb-10 md:mb-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -135,36 +135,6 @@ export default function Casa() {
               <span className="text-accent">{t.casa.headingAccent}</span>.
             </h2>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-            className="sm:pt-1 shrink-0"
-          >
-            <button
-              onClick={() => setShow360(true)}
-              className="inline-flex items-center gap-2.5 rounded-pill bg-accent text-white px-5 py-2.5 text-sm font-medium hover:bg-accent/85 active:scale-95 transition-all shadow-sm"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path d="M12 2c-2.5 3-4 6.4-4 10s1.5 7 4 10" />
-                <path d="M12 2c2.5 3 4 6.4 4 10s-1.5 7-4 10" />
-              </svg>
-              {t.casa.view3dBtn}
-            </button>
-          </motion.div>
         </div>
 
         <motion.div
@@ -178,6 +148,44 @@ export default function Casa() {
           </MediaGallery>
         </motion.div>
 
+        {/* ── Tour 360° CTA ───────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+          className="mt-8 flex justify-center"
+        >
+          <button
+            onClick={() => setShow360(true)}
+            className="group relative flex items-center gap-5 w-full max-w-xl rounded-2xl bg-white border border-hairline px-6 py-5 shadow-sm hover:shadow-md hover:border-accent/30 active:scale-[0.98] transition-all duration-300 hover:cursor-pointer"
+          >
+            {/* Icon */}
+            <div className="shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-accent" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path d="M12 2c-2.5 3-4 6.4-4 10s1.5 7 4 10" />
+                <path d="M12 2c2.5 3 4 6.4 4 10s-1.5 7-4 10" />
+              </svg>
+            </div>
+
+            {/* Text */}
+            <div className="flex-1 text-left min-w-0">
+              <p className="text-[11px] font-semibold tracking-[0.12em] uppercase text-accent mb-0.5">Tour virtuale 360°</p>
+              <p className="text-base font-semibold text-ink leading-snug">Esplora la casa</p>
+              <p className="text-xs text-ink-soft mt-0.5 hidden sm:block">Naviga ogni stanza in prima persona</p>
+            </div>
+
+            {/* Arrow */}
+            <div className="shrink-0 flex items-center gap-1 text-accent">
+              <span className="text-sm font-medium hidden sm:block">Inizia</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 translate-x-0 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </button>
+        </motion.div>
 
           <motion.div
               initial={{ opacity: 0 }}
