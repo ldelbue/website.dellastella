@@ -53,6 +53,7 @@ export type Translations = {
     headingAccent: string
     photoAlt: (i: number) => string
     features: Feature[]
+    view3dBtn: string
   }
   territorio: {
     aria: string
@@ -151,6 +152,7 @@ const it: Translations = {
     headingLead: 'Ogni angolo è pensato per',
     headingAccent: 'farti sentire a casa',
     photoAlt: (i) => `Della Stella, foto ${i + 1}`,
+    view3dBtn: 'Visualizza in 3D',
     features: [
       {
         title: 'Intera casa per te',
@@ -313,6 +315,7 @@ const en: Translations = {
     headingLead: 'Every corner is designed to',
     headingAccent: 'make you feel at home',
     photoAlt: (i) => `Della Stella, photo ${i + 1}`,
+    view3dBtn: 'View in 3D',
     features: [
       {
         title: 'The whole house is yours',
@@ -475,6 +478,7 @@ const de: Translations = {
     headingLead: 'Jede Ecke ist so gestaltet,',
     headingAccent: 'dass du dich zuhause fühlst',
     photoAlt: (i) => `Della Stella, Foto ${i + 1}`,
+    view3dBtn: 'In 3D ansehen',
     features: [
       {
         title: 'Ganzes Haus für dich',
